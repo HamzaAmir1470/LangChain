@@ -1,5 +1,4 @@
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,9 +15,25 @@ llm = HuggingFaceEndpoint(
 # Wrap with ChatHuggingFace for proper chat template handling
 model = ChatHuggingFace(llm=llm)
 
+chat_history = []
+
 while True:
     user_input = input("You: ")
-    if user_input.lower() == "exit":
+
+    # Check for exit before appending to history
+    if user_input.strip().lower() == "exit":
         break
-    result = model.invoke(user_input)
+
+    chat_history.append({"role": "user", "content": user_input})
+
+    result = model.invoke(chat_history)
+
+    # LangChain requires lowercase 'assistant' or 'ai'
+    chat_history.append({"role": "assistant", "content": result.content})
+
     print("Chat Model Answer:\n", result.content)
+
+print("\nChat session ended.")
+print("Chat History:")
+for message in chat_history:
+    print(f"{message['role'].capitalize()}: {message['content']}")
