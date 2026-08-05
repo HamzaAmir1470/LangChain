@@ -1,6 +1,6 @@
 import streamlit as st
 from dotenv import load_dotenv
-from langchain_core.prompts import PromptTemplate, load_prompt
+from langchain_core.prompts import load_prompt
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
 # Load environment variables (.env file)
