@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Students",
+    "description": "A schema for structured output for the students.",
+    "type": "object",
+    "properties": {
+        "name": {
+        "type": "string",
+        "description": "The name of the entity."
+        },
+        "age": {
+        "type": "integer",
+        "description": "The age of the entity."
+        },
+        "email": {
+        "type": "string",
+        "format": "email",
+        "description": "The email address of the entity."
+        }
+    },
+    "required": ["name", "age", "email"]
+}
