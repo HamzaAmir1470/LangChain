@@ -11,14 +11,14 @@ prompt1 = PromptTemplate(
     input_variables=["topic"],
 )
 
-llm = HuggingFaceEndpoint(
-    repo_id="Qwen/Qwen2.5-Coder-7B-Instruct",
-    task="text-generation",
-)
-
 prompt2 = PromptTemplate(
     template="Now, explain the following joke - {text}",
     input_variables=["text"],
+)
+
+llm = HuggingFaceEndpoint(
+    repo_id="Qwen/Qwen2.5-Coder-7B-Instruct",
+    task="text-generation",
 )
 
 model = ChatHuggingFace(llm=llm)
